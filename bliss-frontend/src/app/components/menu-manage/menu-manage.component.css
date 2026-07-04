@@ -1,0 +1,16 @@
+/* 1. Ensure the image column has an explicitly defined width */
+th:nth-child(1), td:nth-child(1) {
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* 2. Format the actual image to look sharp and uniform */
+table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;     /* Keeps the image aspect ratio perfect without distortion */
+  border-radius: 6px;    /* Gives the image smooth, slightly rounded corners */
+  display: block;
+  margin: 0 auto;        /* Perfectly centers the image inside its cell */
+}
