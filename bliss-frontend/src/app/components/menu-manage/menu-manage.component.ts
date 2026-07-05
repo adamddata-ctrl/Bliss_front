@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { MenuItem } from '../../models/menu-item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-manage',
@@ -20,7 +21,7 @@ export class MenuManageComponent implements OnInit {
 
   selectedFile: File | null = null;
 
-  constructor(private menuService: MenuService) { }
+  constructor(private menuService: MenuService, private router: Router)  { }
   ngOnInit(): void {
     this.loadMenu();
   }
@@ -110,5 +111,11 @@ clearFilters(): void {
     fileInput.value = '';
   }
 }
+
+ onLogout(): void {
+    localStorage.removeItem('auth_token'); // Drop the login token key from memory
+    this.router.navigate(['/login']);      // Safely slide back to the clean login screen portal
+  }
+
 
 }
