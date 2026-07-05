@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   // Points to your Spring Boot Security Auth Controller port 8080
-  private authUrl = 'http://localhost:8080/api/auth';
+  private authUrl = 'https://bliss-backend-app.onrender.com';
 
   constructor(private http: HttpClient) { }
 

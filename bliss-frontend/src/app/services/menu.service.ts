@@ -8,7 +8,7 @@ import { MenuItem } from '../models/menu-item';
 })
 export class MenuService {
  // Points to Spring Boot port 8080
-private apiUrl = 'http://localhost:8080/api/menu';
+private apiUrl = 'https://bliss-backend-app.onrender.com';
   constructor(private http: HttpClient) { }
 
   getItems(): Observable<MenuItem[]> {
