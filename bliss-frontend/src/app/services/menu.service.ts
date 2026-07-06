@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../models/menu-item';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
  // Points to Spring Boot port 8080
-private apiUrl = 'https://bliss-backend-app.onrender.com';
+//private apiUrl = 'https://bliss-backend-app.onrender.com';
+private apiUrl = `${environment.apiUrl}`;
   constructor(private http: HttpClient) { }
 
   getItems(): Observable<MenuItem[]> {

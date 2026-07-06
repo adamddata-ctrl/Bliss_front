@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   // Points to your Spring Boot Security Auth Controller port 8080
-  private authUrl = 'https://bliss-backend-app.onrender.com';
+  private authUrl = `${environment.apiUrl}`;
 
   constructor(private http: HttpClient) { }
 
