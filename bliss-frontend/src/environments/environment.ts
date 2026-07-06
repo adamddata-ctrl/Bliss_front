@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://onrender.com'
+  apiUrl: 'https://bliss-backend-app-7lvv.onrender.com'
 };
