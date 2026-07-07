@@ -10,7 +10,8 @@ import { environment } from '../../environments/environment';
 export class MenuService {
  // Points to Spring Boot port 8080
 //private apiUrl = 'https://bliss-backend-app.onrender.com';
-private apiUrl = `${environment.apiUrl}`;
+//private apiUrl = `${environment.apiUrl}`;
+private apiUrl = `${environment.apiUrl}/api/menu`;
   constructor(private http: HttpClient) { }
 
   getItems(): Observable<MenuItem[]> {

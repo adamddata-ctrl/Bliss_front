@@ -8,8 +8,9 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   // Points to your Spring Boot Security Auth Controller port 8080
-  private authUrl = `${environment.apiUrl}`;
-
+  //private authUrl = `${environment.apiUrl}`;
+  //private authUrl = `${environment.apiUrl}/api/auth/login`;
+private authUrl = `${environment.apiUrl}/api/auth`;
   constructor(private http: HttpClient) { }
 
   login(credentials: { username: string; password: string }): Observable<any> {
