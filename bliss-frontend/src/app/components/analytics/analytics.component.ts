@@ -12,10 +12,9 @@ export class AnalyticsComponent implements OnInit {
   public categoryMetrics: Record<string, number> = {};
   private metricsUrl = `${environment.apiUrl}/api/metrics/category-distribution`;
 
-  // Explicit native layout property bindings for the template directive
   public pieChartType: ChartType = 'pie';
   public pieChartLabels: string[] = [];
-  public pieChartDatasets: ChartConfiguration<'pie'>['data']['datasets'] = [
+  public pieChartDatasets: ChartConfiguration<'pie'>['data']['datasets'] = [ 
     { 
       data: [], 
       backgroundColor: ['#0d6efd', '#6c757d', '#ffc107', '#dc3545', '#198754'],
@@ -32,8 +31,8 @@ export class AnalyticsComponent implements OnInit {
         labels: {
           font: { family: 'Segoe UI', size: 12 }
         }
-         }
-    }
+      }
+        }
   };
 
   constructor(private http: HttpClient) {}
@@ -46,13 +45,11 @@ export class AnalyticsComponent implements OnInit {
     this.http.get<Record<string, number>>(this.metricsUrl).subscribe({
       next: (res) => {
         this.categoryMetrics = res;
-        
-        // Directly map backend key/values onto tracked variables safely
         this.pieChartLabels = Object.keys(res).map(l => l.charAt(0).toUpperCase() + l.slice(1));
         this.pieChartDatasets[0].data = Object.values(res);
-         },
+      },
       error: (err) => {
-        console.error('Failed to communicate with metrics analytics endpoint', err);
+          console.error('Failed to communicate with metrics analytics endpoint', err);
       }
     });
   }
