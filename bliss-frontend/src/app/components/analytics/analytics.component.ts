@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core'; // 1. Change OnInit to AfterViewInit
 import { HttpClient } from '@angular/common/http';
 import { Chart, registerables } from 'chart.js';
 import { environment } from '../../../environments/environment';
@@ -10,14 +10,15 @@ Chart.register(...registerables);
   templateUrl: './analytics.component.html',
   styleUrls: ['./analytics.component.css']
 })
-export class AnalyticsComponent implements OnInit {
+export class AnalyticsComponent implements AfterViewInit { // 2. Change hook declaration here
   public chart: any;
   public categoryMetrics: Record<string, number> = {};
-
   private metricsUrl = `${environment.apiUrl}/api/metrics/category-distribution`;
-   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
+  constructor(private http: HttpClient) {}
+
+  // 3. Change ngOnInit() to ngAfterViewInit()
+  ngAfterViewInit(): void {
     this.fetchMetricsData();
   }
 
@@ -27,11 +28,11 @@ export class AnalyticsComponent implements OnInit {
         this.categoryMetrics = res;
         this.renderDistributionChart(Object.keys(res), Object.values(res));
       },
-      error: (err) => {
+        error: (err) => {
         console.error('Failed to communicate with metrics analytics endpoint', err);
       }
     });
-     }
+  }
 
   renderDistributionChart(labels: string[], values: number[]): void {
     if (this.chart) {
@@ -44,11 +45,11 @@ export class AnalyticsComponent implements OnInit {
         labels: labels.map(l => l.charAt(0).toUpperCase() + l.slice(1)),
         datasets: [{
           data: values,
-          backgroundColor: ['#0d6efd', '#6c757d', '#ffc107', '#dc3545', '#198754'],
+            backgroundColor: ['#0d6efd', '#6c757d', '#ffc107', '#dc3545', '#198754'],
           borderWidth: 2,
           borderColor: '#ffffff'
         }]
-         },
+      },
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -61,7 +62,7 @@ export class AnalyticsComponent implements OnInit {
               font: { family: 'Segoe UI', size: 12 }
             }
           }
-        }
+           }
       }
     });
   }
