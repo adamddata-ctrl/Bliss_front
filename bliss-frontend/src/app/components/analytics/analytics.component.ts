@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Chart, registerables } from 'chart.js';
+import { environment } from '../../../environments/environment';
 
 Chart.register(...registerables);
 
@@ -13,9 +14,8 @@ export class AnalyticsComponent implements OnInit {
   public chart: any;
   public categoryMetrics: Record<string, number> = {};
 
-  // Pointing directly to your local backend API endpoint path
-  private metricsUrl = '/api/metrics/category-distribution';
- constructor(private http: HttpClient) {}
+  private metricsUrl = `${environment.apiUrl}/api/metrics/category-distribution`;
+   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.fetchMetricsData();
@@ -31,7 +31,7 @@ export class AnalyticsComponent implements OnInit {
         console.error('Failed to communicate with metrics analytics endpoint', err);
       }
     });
-    }
+     }
 
   renderDistributionChart(labels: string[], values: number[]): void {
     if (this.chart) {
@@ -48,9 +48,8 @@ export class AnalyticsComponent implements OnInit {
           borderWidth: 2,
           borderColor: '#ffffff'
         }]
-      },
-
-       options: {
+         },
+      options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
