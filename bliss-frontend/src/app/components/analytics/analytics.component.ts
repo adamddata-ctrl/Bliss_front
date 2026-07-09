@@ -37,6 +37,7 @@ export class AnalyticsComponent implements OnInit {
       }
     }
   };
+  
 
   constructor(private http: HttpClient) {}
 
