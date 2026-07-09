@@ -12,7 +12,7 @@ export class AnalyticsComponent implements OnInit {
   public categoryMetrics: Record<string, number> = {};
   private metricsUrl = `${environment.apiUrl}/api/metrics/category-distribution`;
 
-  public pieChartType: ChartType = 'pie';
+ public pieChartType: 'pie' = 'pie';
   public pieChartLabels: string[] = [];
   public pieChartDatasets: ChartConfiguration<'pie'>['data']['datasets'] = [ 
     { 
